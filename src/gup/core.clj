@@ -66,7 +66,5 @@
 (defn -main
     "I don't do a whole lot ... yet."
     [& args]
-    (def stats (map check-status repos))
-    (println stats)
     (time (dostuff))
-    (println "Hello"))
+    (shutdown-agents))
