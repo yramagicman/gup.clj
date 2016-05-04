@@ -59,7 +59,7 @@
     :else (show-changes repo)))
 ;bob
 (defn dostuff []
-    (pmap git-fetch repos)
+    (println (pmap git-fetch repos))
     (println (map (fn [repo]
                       (pull-push repo git-pull git-push)) repos))
     (println ((execute-command "/home/jonathan/.zprezto/" "/home/jonathan/bin/zupdate") [])))
