@@ -7,13 +7,9 @@
         (shell/with-sh-dir dir
         (apply shell/sh command args))))
 
-(def repos ["/home/jonathan/Sites/rcportal/portal/"
-            "/usr/share/webapps/wordpress/wp-content/themes/tc_redo"
-            "/home/jonathan/Gits/zsh-aliases/"
-            "/home/jonathan/.zprezto/"
-            "/home/jonathan/.password-store/"
-            "/home/jonathan/.mutt/"
-            "/home/jonathan/"])
+(def repos (filter (fn [line]
+                       (not (clojure.string/starts-with? line "#")))
+                   (clojure.string/split-lines (slurp "/home/jonathan/.config/gits"))))
 
 (defn git-fetch [dir]
     (((execute-command dir "git") ["fetch"]) :out))
