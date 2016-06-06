@@ -30,7 +30,7 @@
                    ["merge-base" "@" "@{u}"]
                    ])
 
-    (def result (pmap (execute-command dir "git") commands))
+    (def result (map (execute-command dir "git") commands))
     (let [local ((second result) :out)
           remote ((second (next result)) :out)
           base ((second (next (next result))) :out)]
