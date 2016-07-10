@@ -2,6 +2,7 @@
   (:gen-class))
 
 (require '[clojure.java.shell :as shell])
+
 (defn execute-command [dir command]
     (fn [args]
         (shell/with-sh-dir dir
@@ -44,6 +45,7 @@
     (def status (git-status repo))
     (def changes-list (map clojure.string/trim (clojure.string/split-lines status)))
     (filter (fn [x] (clojure.string/starts-with? x "modified")) changes-list))
+
 (defn show-changes [repo]
     (println repo)
     (map println (changes repo)))
@@ -57,12 +59,13 @@
             (= stat 1) (push repo)
             :else ((execute-command repo "git" )  ["diff" "HEAD" "master" "origin/HEAD" "origin/master"]))
     :else (show-changes repo)))
-;bob
+
 (defn dostuff []
     (println (pmap git-fetch repos))
     (println (map (fn [repo]
                       (pull-push repo git-pull git-push)) repos))
     (println ((execute-command "/home/jonathan/.zprezto/" "/home/jonathan/bin/zupdate") [])))
+
 (defn -main
     "I don't do a whole lot ... yet."
     [& args]
