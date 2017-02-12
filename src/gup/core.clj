@@ -63,8 +63,7 @@
 (defn dostuff []
     (println (pmap git-fetch repos))
     (println (map (fn [repo]
-                      (pull-push repo git-pull git-push)) repos))
-    (println ((execute-command "/home/jonathan/.zprezto/" "/home/jonathan/bin/zupdate") [])))
+                      (pull-push repo git-pull git-push)) repos)))
 
 (defn -main
     "I don't do a whole lot ... yet."
