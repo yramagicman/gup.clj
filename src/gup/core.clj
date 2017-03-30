@@ -13,7 +13,7 @@
                    (clojure.string/split-lines (slurp "/home/jonathan/.config/gits"))))
 
 (defn git-fetch [dir]
-    (((execute-command dir "git") ["fetch"]) :out))
+    (((execute-command dir "git") ["fetch" "--all"]) :out))
 
 (defn git-pull [dir]
     (((execute-command dir "git") ["rebase" "origin/master" "master"]) :out))
